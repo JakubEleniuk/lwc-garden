@@ -176,9 +176,15 @@ function validateLwcFromFiles(files) {
       item.entryPath.split(
         `${item.parentFolderName}/${item.parentFolderName}`
       )[1] === '.js'
+	)
+	const hasTsFile = files.find(
+    (item) =>
+      item.entryPath.split(
+        `${item.parentFolderName}/${item.parentFolderName}`
+      )[1] === '.ts'
   )
 
-  return hasHtmlFile && hasJsFile
+  return hasHtmlFile && (hasJsFile || hasTsFile)
 }
 
 async function checkFolders(gardenConfig, folderPaths, modules) {
